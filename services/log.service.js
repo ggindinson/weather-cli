@@ -21,11 +21,9 @@ const printHelp = () => {
 };
 
 const printForecast = (data, icon) => {
-	console.log(data);
 	/**
 	 * Making our forecast data from API prettier, string with result is returned
 	 */
-	const { weather } = data;
 	console.log(
 		dedent`${chalk.bgYellow(' WEATHER ')} Weather in ${data.name}
 		${icon}  ${data.weather[0].description}
