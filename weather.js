@@ -43,7 +43,6 @@ const initCLI = () => {
 		return saveValues(args);
 	}
 	getForecast();
-	// Show weather
 };
 
 initCLI();
