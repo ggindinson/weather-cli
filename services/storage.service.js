@@ -5,8 +5,8 @@ import { promises } from 'fs';
 const filePath = join(homedir(), 'weather-data.json');
 
 const TOKEN_DICTIONARY = {
-	token: 'token',
-	city: 'city',
+	t: 'token',
+	s: 'city',
 };
 
 const parseFile = async () => {
@@ -18,9 +18,9 @@ const parseFile = async () => {
 	return {};
 };
 
-const saveKeyValue = async (key, value) => {
+const saveKeyValue = async obj => {
 	const data = await parseFile();
-	data[key] = value;
+	Object.keys(obj).map(key => (data[TOKEN_DICTIONARY[key]] = obj[key]));
 	await promises.writeFile(filePath, JSON.stringify(data));
 };
 

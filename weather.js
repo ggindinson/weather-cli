@@ -6,38 +6,8 @@ import {
 	printHelp,
 	printForecast,
 } from './services/log.service.js';
-import {
-	getKeyValue,
-	saveKeyValue,
-	TOKEN_DICTIONARY,
-} from './services/storage.service.js';
+import { getKeyValue, saveKeyValue } from './services/storage.service.js';
 import { getWeather, getIcon } from './services/api.service.js';
-
-const saveToken = async token => {
-	if (!token.length) {
-		printError('No token provided');
-		return;
-	}
-	try {
-		await saveKeyValue(TOKEN_DICTIONARY.token, token);
-		printSuccess(`Token ${token} was successfully saved`);
-	} catch (error) {
-		printError(error.message);
-	}
-};
-
-const saveCity = async city => {
-	if (!city.length) {
-		printError('No city provided');
-		return;
-	}
-	try {
-		await saveKeyValue(TOKEN_DICTIONARY.city, city.toLowerCase());
-		printSuccess(`City ${city.toLowerCase()} was successfully saved`);
-	} catch (error) {
-		printError(error.message);
-	}
-};
 
 const getForecast = async () => {
 	try {
@@ -55,20 +25,22 @@ const getForecast = async () => {
 	}
 };
 
+const saveValues = async obj => {
+	await saveKeyValue(obj);
+	Object.keys(obj).map(key =>
+		key == 't'
+			? printSuccess(`Token ${obj.t} has been successfully saved`)
+			: printSuccess(`City ${obj.s} has been successfully saved`)
+	);
+};
+
 const initCLI = () => {
 	const args = getArgs(process.argv);
 	if (args.h) {
 		printHelp();
 		return;
-	}
-
-	if (args.s) {
-		return saveCity(args.s);
-	}
-
-	if (args.t) {
-		return saveToken(args.t);
-		// Saving token
+	} else if (args.s || args.t) {
+		return saveValues(args);
 	}
 	getForecast();
 	// Show weather
