@@ -8,7 +8,7 @@ You need to provide a token and a city to start.
 #### Set a city
 
 ```http
-  -s [CITY]
+ weather -s [CITY]
 ```
 
 | Parameter | Type     | Description                                       |
@@ -18,7 +18,7 @@ You need to provide a token and a city to start.
 #### Set an API token
 
 ```http
-  -t [API_KEY]
+  weather -t [API_KEY]
 ```
 
 | Parameter | Type     | Description                                                   |
@@ -26,7 +26,7 @@ You need to provide a token and a city to start.
 | `-t`      | `string` | **Required**. Your API token from https://openweathermap.org/ |
 
 ```http
-  -h
+  weather-h
 ```
 
 | Parameter | Type     | Description           |
