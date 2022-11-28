@@ -1,5 +1,3 @@
-# Hi, I'm MagistrUMDev! 👋
-
 # Weather Forecast CLI
 
 A CLI which provides a current forecast for the chosen city based on the openweathermap API.
